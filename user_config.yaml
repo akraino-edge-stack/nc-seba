@@ -1,0 +1,127 @@
+---
+version: 2.0.0
+name: seba-foundry
+
+description: SEBA Deployment on OpenEdge
+
+time:
+    ntp_servers: [216.239.35.4, 216.239.35.5]
+    zone: America/New_York
+
+users:
+    admin_user_name: cloudadmin
+    admin_user_password: "$6$XXXXXXXX$C3fvJHW8o1383ZTb.vQ86wfjK7VxI7N7KwE0PxQrPdDRpotJMY8wcB2XHUQCheuHf44KGrg.AMGoI3d37IHua/"
+    initial_user_name: myadmin
+    initial_user_password: XXXXXXXX
+    admin_password: XXXXXXXXX
+
+networking:
+    dns: [ 8.8.8.8, 8.8.4.4 ]
+    mtu: 9000
+    infra_external:
+        mtu: 1500
+        network_domains:
+            rack-1:
+                cidr: 10.65.1.0/24
+                gateway: 10.65.1.1
+                vlan: 751
+                ip_range_start: 10.65.1.50
+                ip_range_end: 10.65.1.60
+    infra_storage_cluster:
+        network_domains:
+            rack-1:
+                cidr: 192.168.11.0/24
+                ip_range_start: 192.168.11.51
+                ip_range_end: 192.168.11.60
+                vlan: 3911
+    infra_internal:
+        network_domains:
+            rack-1:
+                cidr: 192.168.12.0/24
+                ip_range_start: 192.168.12.51
+                ip_range_end: 192.168.12.60
+                vlan: 3912
+
+caas:
+    docker_size_quota: 2G
+    helm_operation_timeout: 900
+    docker0_cidr: 172.17.0.1/16
+    instantiation_timeout: 60
+    helm_parameters: { "registry_url": "registry.kube-system.svc.nokia.net" }
+    encrypted_ca: ["U2FsdGVkX1+iaWyYk3W01IFpfVdughR5aDKo2NpcBw2UStYnepHlr5IJD3euo1lS\n7agR5K2My8zYdWFTYYqZncVfYZt7Tc8zB2yzATEIHEV8PQuZRHqPdR+/OrwqjwA6\ni/R+4Ec3Kko6eS0VWvwDfdhhK/nwczNNVFOtWXCwz/w7AnI9egiXnlHOq2P/tsO6\np3e9J6ly5ZLp9WbDk2ddAXChnJyC6PlF7ou/UpFOvTEXRgWrWZV6SUAgdxg5Evam\ndmmwqjRubAcxSo7Y8djHtspsB2HqYs90BCBtINHrEj5WnRDNMR/kWryw1+S7zL1G\nwrpDykBRbq/5jRQjqO/Ct98yNDdGSWZ+kqMDfLriH4pQoOzMcicT4KRplQNX2q9O\nT/7CXKmmB3uBxM7a9k2LS22Ljszyd2vxth4jA+SLNOB5IT8FmfDY3PvNnvKaDGQ4\nuWPASyjpPjms3LwsKeu+T8RcKcJJPoZMNZGLm/5jVqm3RXbMvtI0oEaHWsVaSuwX\nnMgGQHNHop+LK+5a0InYn4ZJo9sbvrHp9Vz4Vo+AzqTVXwA4NEHfqMvpphG+aRCb\ncPJggJqnF6s5CAPDRvwXzqjjVQy2P1/AhJugW7HZw3dtux4xe3RZ+AMS2YW+fSi1\nIxAGlsLL28KJMc5ACxX5cuSB/nO19afpf6zyOPIk0ZVh8+bxmB4YBRzGLTSnFNr3\ndauT9/gCU85ThE93rIfPW6PRyp9juEBLjgTpqDQPn5APoJIIW1ZQWr6tvSlT04Hc\nw0HZ7EcAC7EmmaQYTyL6iifHiZHop9g2clXA0MU9USQggMOKxFrxEyF4iWdsCCXP\nfTA3bgzvlvqfk9p2Cu9DOmRHGLby2YSj+oghsFDCfhfM1v2Ip2YGPdJM6y7kNX19\nkBpV4Rfcw0NCg2hhXbHZ7LtejlQ1ht8HnmY5/AnJ/HRdnPb+fcdgS9ZFcGsAH2ze\nSe7hb+MNp80JsuX4A+jOjBacjwL+KbX5RDJp//5dEmqJDkbfMctL1KukBaDrbpci\np/TeVmLhwlQogeVuF/Y5vCokq6M5+f28jFJ+R+P2oBY3fAvBhmd+ZmGbUWXxmMF+\nV3mpFkYqXWS+mtVh8Fs0nhrCkqRLTmBj5UNhsMcZ4vGfiu+dPMQi62wa6GoGVjus\nIj/Upal9RYwthSykUKcWu0KEB929/e4Sz0Y6s3Pzy1+xdmKDPtaBUH9UT3LjMVvY\nordeL0UjKYqWcvpb7Vfma3UD0tz6n/CyHNDVhA/FioadEy6iJvL316Kf3to69cN+\nvKWav/IeazxdhBSbatPKN3qwESkzr3el2yrdZL4qehflRMp0rFuzZfRB69UFPbgq\nkTQlJHb0OaJTt6er/XfjtMZoctW7xtYf58CqMJ06QxK5kLKc5Yib73cVyzhmmIz4\nEtUs10QCA5AihHgVES8ZrgZKWDhR+pmFPG3eVitJoUeDNEe9vVEEX8TiWu+H1OHG\n8UyCKFyyPCj5OwVbwGSgQg=="]
+    encrypted_ca_key: ["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\njJu5IidT3u5+hUlIdZtEtA=="]
+
+storage:
+    backends:
+        lvm:
+            enabled: false
+        ceph:
+            osd_pool_default_size: 2
+            enabled: true
+
+network_profiles:
+    controller_network:
+        linux_bonding_options: "mode=lacp"
+        ovs_bonding_options: "mode=lacp"
+
+        bonding_interfaces:
+            bond0: [ens11f0,ens11f1]
+
+        interface_net_mapping:
+            bond0: [infra_internal, infra_external, infra_storage_cluster]
+
+performance_profiles:
+    caas_cpu_profile:
+        caas_cpu_pools:
+            exclusive_pool_percentage: 25
+            shared_pool_percentage: 75
+
+storage_profiles:
+    caas_worker_docker_profile:
+        lvm_instance_storage_partitions: ["1"]
+        mount_dir: /var/lib/docker
+        mount_options: noatime,nodiratime,logbufs=8,pquota
+        backend: bare_lvm
+        lv_name: docker
+
+    ceph_backend_profile:
+        backend: ceph
+        nr_of_ceph_osd_disks: 2
+        ceph_pg_openstack_caas_share_ratio: "0:1"
+
+hosts:
+    controller-1:
+        service_profiles:     [ caas_master, storage ]
+        network_profiles:     [ controller_network ]
+        storage_profiles:     [ ceph_backend_profile ]
+        performance_profiles: [ caas_cpu_profile ]
+        network_domain: rack-1
+        hwmgmt:
+            address:  10.65.3.57
+            user:     admin
+            password: XXXXXXXX
+    controller-2:
+        service_profiles:     [ caas_master, storage ]
+        network_profiles:     [ controller_network ]
+        storage_profiles:     [ ceph_backend_profile ]
+        performance_profiles: [ caas_cpu_profile ]
+        network_domain: rack-1
+        hwmgmt:
+            address:  10.65.3.56
+            user:     admin
+            password: XXXXXXXX
+    controller-3:
+        service_profiles:     [ caas_master, storage ]
+        network_profiles:     [ controller_network ]
+        storage_profiles:     [ ceph_backend_profile ]
+        performance_profiles: [ caas_cpu_profile ]
+        network_domain: rack-1
+        hwmgmt:
+            address:  10.65.3.55
+            user:     admin
+            password: XXXXXXXX
+
+host_os:
+    lockout_time: 300
+    failed_login_attempts: 5
+...
